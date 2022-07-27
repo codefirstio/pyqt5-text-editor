@@ -16,7 +16,13 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QTextEdit" name="textEdit"/>
+     <widget class="QTextEdit" name="textEdit">
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -26,7 +32,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -64,7 +70,6 @@
    <addaction name="menuEdit"/>
    <addaction name="menuAppearance"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSet_Dark_Mode">
    <property name="text">
     <string>Set Dark Mode</string>

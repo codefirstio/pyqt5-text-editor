@@ -1,14 +1,16 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog
 from PyQt5.uic import loadUi
-import sys
+import sys, os
 
+# Path of program
+main_path = os.path.dirname(__file__)
 class Main(QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
         loadUi("main.ui", self)
         
         self.current_path = None 
-        self.current_fontsize = 8
+        self.current_fontsize = 14
         self.setWindowTitle("Untitled")
         
         self.actionNew.triggered.connect(self.newFile)
@@ -41,7 +43,7 @@ class Main(QMainWindow):
             self.saveFileAs()
 
     def saveFileAs(self):
-        pathname = QFileDialog.getSaveFileName(self, 'Save file', 'D:\codefirst.io\PyQt5 Text Editor', 'Text files(*.txt)')
+        pathname = QFileDialog.getSaveFileName(self, 'Save file', main_path, 'Text files(*.txt)')
         filetext = self.textEdit.toPlainText()
         with open(pathname[0], 'w') as f:
             f.write(filetext)
@@ -49,7 +51,7 @@ class Main(QMainWindow):
         self.setWindowTitle(pathname[0])
 
     def openFile(self):
-        fname = QFileDialog.getOpenFileName(self, 'Open file', 'D:\codefirst.io\PyQt5 Text Editor', 'Text files (*.txt)')
+        fname = QFileDialog.getOpenFileName(self, 'Open file', main_path, 'Text files (*.txt)')
         self.setWindowTitle(fname[0])
         with open(fname[0], 'r') as f:
             filetext = f.read()
