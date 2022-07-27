@@ -43,20 +43,24 @@ class Main(QMainWindow):
             self.saveFileAs()
 
     def saveFileAs(self):
-        pathname = QFileDialog.getSaveFileName(self, 'Save file', main_path, 'Text files(*.txt)')
-        filetext = self.textEdit.toPlainText()
-        with open(pathname[0], 'w') as f:
-            f.write(filetext)
-        self.current_path = pathname[0]
-        self.setWindowTitle(pathname[0])
+        try:
+            pathname = QFileDialog.getSaveFileName(self, 'Save file', main_path, 'Text files(*.txt)')
+            filetext = self.textEdit.toPlainText()
+            with open(pathname[0], 'w') as f:
+                f.write(filetext)
+            self.current_path = pathname[0]
+            self.setWindowTitle(pathname[0])
+        except: pass
 
     def openFile(self):
-        fname = QFileDialog.getOpenFileName(self, 'Open file', main_path, 'Text files (*.txt)')
-        self.setWindowTitle(fname[0])
-        with open(fname[0], 'r') as f:
-            filetext = f.read()
-            self.textEdit.setText(filetext)
-        self.current_path = fname[0]
+        try:
+            fname = QFileDialog.getOpenFileName(self, 'Open file', main_path, 'Text files (*.txt)')
+            self.setWindowTitle(fname[0])
+            with open(fname[0], 'r') as f:
+                filetext = f.read()
+                self.textEdit.setText(filetext)
+            self.current_path = fname[0]
+        except: pass
 
     def undo(self):
         self.textEdit.undo()
